@@ -24,7 +24,7 @@ public class MainMenu {
     private void createCategory() {
         categories.clear();
         categories.add(new appCategory("Body Types", "stratocaster.png"));
-        categories.add(new appCategory("Pickups", "humbuckers.png"));
+        categories.add(new appCategory("Pickups", "humbucker.png"));
         categories.add(new appCategory("Effects", "Metal.png"));
 
     }

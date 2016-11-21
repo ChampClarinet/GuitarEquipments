@@ -9,7 +9,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.clarinetmaster.guitarequipments.BodyTypesListActivity">
+    tools:context="com.example.clarinetmaster.guitarequipments.CategoryListActivity">
 
     <TextView
         android:id="@+id/body_label"

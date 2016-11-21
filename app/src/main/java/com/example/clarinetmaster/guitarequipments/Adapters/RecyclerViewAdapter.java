@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.clarinetmaster.guitarequipments.BodyTypesListActivity;
+import com.example.clarinetmaster.guitarequipments.CategoryListActivity;
 import com.example.clarinetmaster.guitarequipments.Model.appCategory;
 import com.example.clarinetmaster.guitarequipments.R;
 import com.example.clarinetmaster.guitarequipments.Utilities.Utils;
@@ -62,17 +62,17 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             public void onClick(View v) {
                 appCategory selected = mDataset.get(position);
                 if(selected.isMainMenu()){
+                    Intent intent = new Intent(context, CategoryListActivity.class);
                     if(selected.getName().equals("Body Types")){
-                        context.startActivity(new Intent(context, BodyTypesListActivity.class));
+                        intent.putExtra("Category", "Body Types");
                     }else if(selected.getName().equals("Pickups")){
-
+                        intent.putExtra("Category", "Pickups");
                     }
                     else if(selected.getName().equals("Effects")){
-
+                        intent.putExtra("Category", "Effects");
                     }
-                }else if(!selected.isMainMenu()){
-                    Utils.showContent(context, selected);
-                }
+                    context.startActivity(intent);
+                }else Utils.showContent(context, selected);
             }
         });
 

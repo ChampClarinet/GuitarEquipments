@@ -10,17 +10,36 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import com.example.clarinetmaster.guitarequipments.Adapters.RecyclerViewAdapter;
+import com.example.clarinetmaster.guitarequipments.Model.EffectsMenu;
 import com.example.clarinetmaster.guitarequipments.Model.GuitarBodyMenu;
+import com.example.clarinetmaster.guitarequipments.Model.PickupsMenu;
 import com.example.clarinetmaster.guitarequipments.Utilities.Utils;
 
-public class BodyTypesListActivity extends AppCompatActivity {
+public class CategoryListActivity extends AppCompatActivity {
 
-    private final String TAG = BodyTypesListActivity.class.getSimpleName();
+    private final String TAG = CategoryListActivity.class.getSimpleName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_body_types);
+
+        String category = getIntent().getExtras().getString("Category");
+
+        RecyclerViewAdapter adapter;
+
+        if(category.equals("Body Types")){
+            GuitarBodyMenu menu = GuitarBodyMenu.getInstance(this);
+            adapter = new RecyclerViewAdapter(this, menu.getCategories());
+        }
+        else if(category.equals("Pickups")){
+            PickupsMenu menu = PickupsMenu.getInstance(this);
+            adapter = new RecyclerViewAdapter(this, menu.getCategories());
+        }
+        else{
+            EffectsMenu menu = EffectsMenu.getInstance(this);
+            adapter = new RecyclerViewAdapter(this, menu.getCategories());
+        }
 
         RecyclerView categoriesRV = (RecyclerView) findViewById(R.id.body_recycler_view);
 
@@ -28,9 +47,6 @@ public class BodyTypesListActivity extends AppCompatActivity {
 
         categoriesRV.setLayoutManager(new LinearLayoutManager(this));
 
-        GuitarBodyMenu menu = GuitarBodyMenu.getInstance(this);
-
-        RecyclerViewAdapter adapter = new RecyclerViewAdapter(this, menu.getCategories());
         categoriesRV.setAdapter(adapter);
 
     }
