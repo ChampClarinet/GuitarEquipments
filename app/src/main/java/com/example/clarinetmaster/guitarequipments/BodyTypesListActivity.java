@@ -10,27 +10,27 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import com.example.clarinetmaster.guitarequipments.Adapters.RecyclerViewAdapter;
-import com.example.clarinetmaster.guitarequipments.Model.MainMenu;
+import com.example.clarinetmaster.guitarequipments.Model.GuitarBodyMenu;
 import com.example.clarinetmaster.guitarequipments.Utilities.Utils;
 
-public class MainActivity extends AppCompatActivity {
+public class BodyTypesListActivity extends AppCompatActivity {
 
-    private final String TAG = MainActivity.class.getSimpleName();
+    private final String TAG = BodyTypesListActivity.class.getSimpleName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_body_types);
 
-        RecyclerView categoriesRV = (RecyclerView) findViewById(R.id.category_recycler_view);
-        
+        RecyclerView categoriesRV = (RecyclerView) findViewById(R.id.body_recycler_view);
+
         categoriesRV.setHasFixedSize(true);
 
         categoriesRV.setLayoutManager(new LinearLayoutManager(this));
 
-        MainMenu mainMenu = MainMenu.getInstance(this);
+        GuitarBodyMenu menu = GuitarBodyMenu.getInstance(this);
 
-        RecyclerViewAdapter adapter = new RecyclerViewAdapter(this, mainMenu.getCategories());
+        RecyclerViewAdapter adapter = new RecyclerViewAdapter(this, menu.getCategories());
         categoriesRV.setAdapter(adapter);
 
     }

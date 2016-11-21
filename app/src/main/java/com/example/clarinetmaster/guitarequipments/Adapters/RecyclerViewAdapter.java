@@ -1,6 +1,7 @@
 package com.example.clarinetmaster.guitarequipments.Adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -10,13 +11,14 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.clarinetmaster.guitarequipments.BodyTypesListActivity;
 import com.example.clarinetmaster.guitarequipments.Model.appCategory;
 import com.example.clarinetmaster.guitarequipments.R;
 import com.example.clarinetmaster.guitarequipments.Utilities.Utils;
 
 import java.util.ArrayList;
 
-public class CategoryRecyclerAdapter extends RecyclerView.Adapter<CategoryRecyclerAdapter.ViewHolder> {
+public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
 
     private ArrayList<appCategory> mDataset;
     private Context context;
@@ -34,13 +36,13 @@ public class CategoryRecyclerAdapter extends RecyclerView.Adapter<CategoryRecycl
         }
     }
 
-    public CategoryRecyclerAdapter(Context context, ArrayList<appCategory> myDataset) {
+    public RecyclerViewAdapter(Context context, ArrayList<appCategory> myDataset) {
         this.context = context;
         mDataset = myDataset;
     }
 
     @Override
-    public CategoryRecyclerAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public RecyclerViewAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
         View v;
         v = LayoutInflater.from(parent.getContext()).inflate(R.layout.category_cardview, parent, false);
@@ -52,13 +54,25 @@ public class CategoryRecyclerAdapter extends RecyclerView.Adapter<CategoryRecycl
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
         holder.mTextView.setText(mDataset.get(position).getName());
-        Drawable drawable = Utils.getDrawableFromAssets(context, mDataset.get(position).getImage());
+        Drawable drawable = Utils.getDrawableFromAssets(context, mDataset.get(position).getImageFileName());
         holder.mImageView.setImageDrawable(drawable);
 
         holder.mCardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 appCategory selected = mDataset.get(position);
+                if(selected.isMainMenu()){
+                    if(selected.getName().equals("Body Types")){
+                        context.startActivity(new Intent(context, BodyTypesListActivity.class));
+                    }else if(selected.getName().equals("Pickups")){
+
+                    }
+                    else if(selected.getName().equals("Effects")){
+
+                    }
+                }else if(!selected.isMainMenu()){
+                    Utils.showContent(context, selected);
+                }
             }
         });
 

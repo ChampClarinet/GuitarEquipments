@@ -4,19 +4,19 @@ import android.content.Context;
 
 import java.util.ArrayList;
 
-public class CategoryMenu {
+public class MainMenu {
 
-    private static CategoryMenu mInstance;
+    private static MainMenu mInstance;
     private static Context mContext;
 
     private static ArrayList<appCategory> categories = new ArrayList<>();
 
-    public static CategoryMenu getInstance(Context context){
-        if(mInstance == null) new CategoryMenu(context);
+    public static MainMenu getInstance(Context context){
+        if(mInstance == null) new MainMenu(context);
         return mInstance;
     }
 
-    public CategoryMenu(Context context) {
+    public MainMenu(Context context) {
         this.mContext = context;
         createCategory();
     }
@@ -25,10 +25,7 @@ public class CategoryMenu {
         categories.clear();
         categories.add(new appCategory("Body Types", "stratocaster.png"));
         categories.add(new appCategory("Pickups", "humbuckers.png"));
-        categories.add(new appCategory("Effects", "effects.png"));
-        /*String name = "Body Types";
-        String image = "stratocaster.png";
-        categories.add(new appCategory(name, image));*/
+        categories.add(new appCategory("Effects", "Metal.png"));
 
     }
 
